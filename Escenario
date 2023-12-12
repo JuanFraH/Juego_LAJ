@@ -1,0 +1,38 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class Escenario here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Escenario extends World
+{
+    // https://www.greenfoot.org/topics/63600/0
+    public Escenario()
+    {    
+        super(900, 600, 1); 
+        setBackground("tile.png");
+    }
+    
+    public void started() {
+        Ship ship1 = new Ship();
+        addObject(ship1,450,500);
+        
+        frasco();
+    }
+    
+    private void botella(){
+        int xbotella;
+        xbotella = Greenfoot.getRandomNumber(900);
+        Botella botella1 = new Botella();
+        addObject(botella1,xbotella,0);
+    }
+
+    private void frasco(){
+        int xfrasco;
+        xfrasco = Greenfoot.getRandomNumber(900);
+        Frasco frasco1 = new Frasco();
+        addObject(frasco1,xfrasco,0);
+    }
+}
