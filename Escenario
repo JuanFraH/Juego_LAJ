@@ -18,7 +18,7 @@ public class Escenario extends World
     public void started() {
         Ship ship1 = new Ship();
         addObject(ship1,450,500);
-        
+        botella();
         frasco();
     }
     
