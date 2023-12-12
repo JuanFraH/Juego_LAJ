@@ -1,0 +1,22 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class Frasco here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Frasco extends Actor
+{
+    public Frasco(){
+        setImage("Frasco.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*7/8;
+        int myNewWidth = (int)myImage.getWidth()*7/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    public void act()
+    {
+        setLocation(getX(), getY() + 5);
+    }
+}
