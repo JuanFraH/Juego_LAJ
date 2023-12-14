@@ -8,15 +8,127 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Frasco extends Actor
 {
+    int obj = Greenfoot.getRandomNumber(10);
+    
     public Frasco(){
-        setImage("Frasco.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*7/8;
-        int myNewWidth = (int)myImage.getWidth()*7/8;
-        myImage.scale(myNewWidth,myNewHeight);
+        switch (obj){
+            case 0:
+                frasco();
+                break;
+            case 1:
+                botella();
+                break;
+            case 2:
+                disco();
+                break;
+            case 3:
+                movil();
+                break;
+            case 4:
+                libro();
+                break;
+            case 5:
+                mando();
+                break;
+            case 6:
+                ordenador();
+                break;
+            case 7:
+                portatil();
+                break;
+            case 8:
+                torren();
+                break;
+            case 9:
+                torreb();
+                break;
+        }
     }
     public void act()
     {
         setLocation(getX(), getY() + 5);
+        if (isAtEdge()){
+            getWorld().removeObject(this);
+        }
+    }
+    
+    public void frasco(){
+        setImage("Frasco.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    
+    public void botella(){
+        setImage("Botella.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    
+    public void disco(){
+        setImage("Disco.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    
+    public void movil(){
+        setImage("Movil.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    
+    public void libro(){
+        setImage("Libro.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    
+    public void mando(){
+        setImage("Mando.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    
+    public void ordenador(){
+        setImage("Ordenador.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    
+    public void portatil(){
+        setImage("Portatil.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    
+    public void torren(){
+        setImage("Torre negra.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    
+    public void torreb(){
+        setImage("Torre blanca.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
     }
 }
