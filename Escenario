@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Escenario extends World
 {
     // https://www.greenfoot.org/topics/63600/0
+    Gancho gancho = new Gancho();
     public Escenario()
     {    
         super(900, 600, 1); 
@@ -18,15 +19,17 @@ public class Escenario extends World
     public void started() {
         Ship ship1 = new Ship();
         addObject(ship1,450,500);
-        botella();
-        frasco();
     }
     
-    private void botella(){
-        int xbotella;
-        xbotella = Greenfoot.getRandomNumber(900);
-        Botella botella1 = new Botella();
-        addObject(botella1,xbotella,0);
+    public void act(){
+        if (Greenfoot.isKeyDown("space") && gancho.e == false){
+            gancho();
+            gancho.e = true;
+        }
+        
+        if (Greenfoot.isKeyDown("W")){
+            frasco();
+        }
     }
 
     private void frasco(){
@@ -34,5 +37,12 @@ public class Escenario extends World
         xfrasco = Greenfoot.getRandomNumber(900);
         Frasco frasco1 = new Frasco();
         addObject(frasco1,xfrasco,0);
+    }
+    
+    private void gancho(){
+        int xgancho;
+        xgancho = Greenfoot.getRandomNumber(900);
+        Gancho gancho1 = new Gancho();
+        addObject(gancho1,xgancho,500);
     }
 }
