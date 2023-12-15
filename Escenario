@@ -8,8 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Escenario extends World
 {
-    // https://www.greenfoot.org/topics/63600/0
     Gancho gancho = new Gancho();
+    private int timeElapsed;
+    private int timeCounter;
     public Escenario()
     {    
         super(900, 600, 1); 
@@ -19,11 +20,6 @@ public class Escenario extends World
     public void started() {
         Ship ship1 = new Ship();
         addObject(ship1,450,500);
-        
-        int xfrasco;
-        xfrasco = Greenfoot.getRandomNumber(900);
-        Frasco frasco1 = new Frasco();
-        addObject(frasco1,xfrasco,0);
         
         int xpeza;
         xpeza = Greenfoot.getRandomNumber(900);
@@ -57,14 +53,39 @@ public class Escenario extends World
     }
     
     public void act(){
-        if (gancho.e == false){
-            gancho();
-            gancho.e = true;
-        }
+        switch (x){
+        case 0:
+            tim = 68;
+        break;
+        case 1:
+            tim = 82;
+        break;
+        case 2:
+            tim = 96;
+        break;
+        case 3:
+            tim = 110;
+        break;
+        case 4:
+            tim = 125;
+        break;
+    }
         
-        if (Greenfoot.isKeyDown("W")){
+    if (gancho.e == false){
+          gancho();
+         gancho.e = true;
+    }
+        timeCounter = (timeCounter+1)%(tim);
+    if (timeCounter == 0)
+    {
+        timeElapsed++;
+        int b = Greenfoot.getRandomNumber(2);
+        for (int i = 0; i <= b; i++){
             frasco();
         }
+        timeElapsed = 0;
+        x = Greenfoot.getRandomNumber(5);
+    }
     }
 
     private void frasco(){
