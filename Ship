@@ -6,12 +6,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Ship extends Actor
+public class A_Ship extends Actor
 {
-    public Ship(){
+    public int x;
+    public A_Ship(){
         setImage("ship.png");
+        x = 0;
     }
-
+    
     public void act()
     {
         setRotation(180);
@@ -22,5 +24,10 @@ public class Ship extends Actor
         if (Greenfoot.isKeyDown("D")){
             move (-6);
         }
+        x = getX();
+    }
+    
+    protected int gX(){
+        return x;
     }
 }
