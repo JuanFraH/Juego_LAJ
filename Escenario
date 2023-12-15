@@ -57,7 +57,7 @@ public class Escenario extends World
     }
     
     public void act(){
-        if (Greenfoot.isKeyDown("space") && gancho.e == false){
+        if (gancho.e == false){
             gancho();
             gancho.e = true;
         }
