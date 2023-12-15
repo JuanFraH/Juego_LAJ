@@ -1,0 +1,64 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class Peces here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Peces extends Actor
+{
+    /**
+     * Act - do whatever the Peces wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void peza(){
+        setImage("Peza.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    public void pezr(){
+        setImage("Pezr.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    public void pezv(){
+        setImage("Pezv.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    public void pezn(){
+        setImage("Pezn.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    public void pezm(){
+        setImage("Pezm.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    public void pezb(){
+        setImage("Pezb.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    public void act()
+    {
+        setLocation(getX()+2, getY());
+        if (isAtEdge()){
+            getWorld().removeObject(this);
+        }
+    }
+}
