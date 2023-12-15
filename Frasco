@@ -46,7 +46,7 @@ public class Frasco extends Actor
     }
     public void act()
     {
-        setLocation(getX(), getY() + 5);
+        setLocation(getX(), getY() + 2);
         if (isAtEdge()){
             getWorld().removeObject(this);
         }
