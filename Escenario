@@ -19,6 +19,41 @@ public class Escenario extends World
     public void started() {
         Ship ship1 = new Ship();
         addObject(ship1,450,500);
+        
+        int xfrasco;
+        xfrasco = Greenfoot.getRandomNumber(900);
+        Frasco frasco1 = new Frasco();
+        addObject(frasco1,xfrasco,0);
+        
+        int xpeza;
+        xpeza = Greenfoot.getRandomNumber(900);
+        Peces peza = new Peces();
+        addObject(peza,400,400);
+        
+        int xpezr;
+        xfrasco = Greenfoot.getRandomNumber(900);
+        Peces pezr = new Peces();
+        addObject(frasco1,xfrasco,0);
+        
+        int xpezv;
+        xfrasco = Greenfoot.getRandomNumber(900);
+        Peces pezv = new Peces();
+        addObject(frasco1,xfrasco,0);
+        
+        int xpezn;
+        xfrasco = Greenfoot.getRandomNumber(900);
+        Peces pezn = new Peces();
+        addObject(frasco1,xfrasco,0);
+        
+        int xpezm;
+        xfrasco = Greenfoot.getRandomNumber(900);
+        Peces pezm = new Peces();
+        addObject(frasco1,xfrasco,0);
+        
+        int xpezb;
+        xfrasco = Greenfoot.getRandomNumber(900);
+        Peces pezb = new Peces();
+        addObject(frasco1,xfrasco,0);
     }
     
     public void act(){
