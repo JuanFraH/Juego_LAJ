@@ -20,12 +20,7 @@ public class Gancho extends Actor
     
     public void act()
     {
-          if (Greenfoot.isKeyDown("A")){
-            move (3);
-        }
-        if (Greenfoot.isKeyDown("D")){
-            move (-3);
-        }
+        setLocation(getX(), getY()-5);
         if (isAtEdge()){
             getWorld().removeObject(this);
             e = false;
@@ -33,3 +28,4 @@ public class Gancho extends Actor
         }
     }
 }
+
