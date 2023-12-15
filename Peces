@@ -8,6 +8,30 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Peces extends Actor
 {
+    int obj = Greenfoot.getRandomNumber(6);
+    
+    public Peces(){
+        switch (obj){
+            case 0:
+                peza();
+                break;
+            case 1:
+                pezr();
+                break;
+            case 2:
+                pezv();
+                break;
+            case 3:
+                pezn();
+                break;
+            case 4:
+                pezm();
+                break;
+            case 5:
+                pezb();
+                break;
+        }
+    }
     /**
      * Act - do whatever the Peces wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -54,11 +78,13 @@ public class Peces extends Actor
         int myNewWidth = (int)myImage.getWidth()*5/8;
         myImage.scale(myNewWidth,myNewHeight);
     }
+    int a = 2;
     public void act()
     {
-        setLocation(getX()+2, getY());
+        setLocation(getX()+a, getY());
         if (isAtEdge()){
-            getWorld().removeObject(this);
+            a = a*-1;
+           getImage().mirrorHorizontally();
         }
     }
 }
