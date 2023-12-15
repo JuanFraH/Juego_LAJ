@@ -11,6 +11,8 @@ public class Escenario extends World
     Gancho gancho = new Gancho();
     private int timeElapsed;
     private int timeCounter;
+    private int timeElapsed2;
+    private int timeCounter2;
     public Escenario()
     {    
         super(900, 600, 1); 
@@ -18,42 +20,124 @@ public class Escenario extends World
     }
     
     public void started() {
-        Ship ship1 = new Ship();
-        addObject(ship1,450,500);
-        
         int xpeza;
         xpeza = Greenfoot.getRandomNumber(900);
         Peces peza = new Peces();
-        addObject(peza,400,400);
+        addObject(peza,xpeza,400);
         
         int xpezr;
-        xfrasco = Greenfoot.getRandomNumber(900);
+        xpezr = Greenfoot.getRandomNumber(900);
         Peces pezr = new Peces();
-        addObject(frasco1,xfrasco,0);
+        addObject(pezr,xpezr, 450);
         
         int xpezv;
-        xfrasco = Greenfoot.getRandomNumber(900);
+        xpezv = Greenfoot.getRandomNumber(900);
         Peces pezv = new Peces();
-        addObject(frasco1,xfrasco,0);
+        addObject(pezv,xpezv,500);
         
         int xpezn;
-        xfrasco = Greenfoot.getRandomNumber(900);
+        xpezn = Greenfoot.getRandomNumber(900);
         Peces pezn = new Peces();
-        addObject(frasco1,xfrasco,0);
+        addObject(pezn,xpezn,550);
         
         int xpezm;
-        xfrasco = Greenfoot.getRandomNumber(900);
+        xpezm = Greenfoot.getRandomNumber(900);
         Peces pezm = new Peces();
-        addObject(frasco1,xfrasco,0);
+        addObject(pezm,xpezm,479);
         
         int xpezb;
-        xfrasco = Greenfoot.getRandomNumber(900);
+        xpezb = Greenfoot.getRandomNumber(900);
         Peces pezb = new Peces();
-        addObject(frasco1,xfrasco,0);
+        addObject(pezb,xpezb,562);
+        
+        int ypeza;
+        ypeza = Greenfoot.getRandomNumber(900);
+        Peces pezay = new Peces();
+        addObject(pezay,ypeza,424);
+        
+        int ypezr;
+        ypezr = Greenfoot.getRandomNumber(900);
+        Peces pezry = new Peces();
+        addObject(pezry,ypezr, 458);
+        
+        int ypezv;
+        ypezv = Greenfoot.getRandomNumber(900);
+        Peces pezvy = new Peces();
+        addObject(pezvy,ypezv,512);
+        
+        int ypezn;
+        ypezn = Greenfoot.getRandomNumber(900);
+        Peces pezny = new Peces();
+        addObject(pezny,ypezn,582);
+        
+        int ypezm;
+        ypezm = Greenfoot.getRandomNumber(900);
+        Peces pezmy = new Peces();
+        addObject(pezmy,ypezm,590);
+        
+        int ypezb;
+        ypezb = Greenfoot.getRandomNumber(900);
+        Peces pezby = new Peces();
+        addObject(pezby,ypezb,523);
+        
+        
+        int xalgaa2;
+        xalgaa2 = Greenfoot.getRandomNumber(900);
+        Algas algaa2 = new Algas();
+        addObject(algaa2,xalgaa2,580);
+        
+        int xalgam;
+        xalgam = Greenfoot.getRandomNumber(900);
+        Algas algam = new Algas();
+        addObject(algam,xalgam,580);
+        
+        int xalgam2;
+        xalgam2 = Greenfoot.getRandomNumber(900);
+        Algas algam2 = new Algas();
+        addObject(algam2,xalgam2,580);
+        
+        int xalgav;
+        xalgav = Greenfoot.getRandomNumber(900);
+        Algas algav = new Algas();
+        addObject(algav,xalgav,580);
+        
+        int xalgav2;
+        xalgav2 = Greenfoot.getRandomNumber(900);
+        Algas algav2 = new Algas();
+        addObject(algav2,xalgav2,580);
+        
+        int yalgaa;
+        yalgaa = Greenfoot.getRandomNumber(900);
+        Algas algaay = new Algas();
+        addObject(algaay,yalgaa,580);
+        
+        int yalgaa2;
+        yalgaa2 = Greenfoot.getRandomNumber(900);
+        Algas algaa2y = new Algas();
+        addObject(algaa2y,yalgaa2,580);
+        
+        int yalgam;
+        yalgam = Greenfoot.getRandomNumber(900);
+        Algas algamy = new Algas();
+        addObject(algamy,yalgam,580);
+        
+        int xalgaa;
+        xalgaa = Greenfoot.getRandomNumber(900);
+        Algas algaa = new Algas();
+        addObject(algaa,xalgaa,580);
+        
+        
+        A_Ship ship1 = new A_Ship();
+        addObject(ship1,450,500);
     }
     
+    int a = Greenfoot.getRandomNumber(4);
+    int tim;
+    int x = Greenfoot.getRandomNumber(5);
+    boolean existea = false;
+    boolean nace = false;
     public void act(){
-        switch (x){
+          switch (x){
         case 0:
             tim = 68;
         break;
@@ -71,9 +155,12 @@ public class Escenario extends World
         break;
     }
         
-    if (gancho.e == false){
-          gancho();
-         gancho.e = true;
+    if (Greenfoot.isKeyDown("space") && existea == false){
+        gancho();
+        existea = true;
+        timeCounter2=0;
+        timeElapsed2=0;
+        nace = true;
     }
         timeCounter = (timeCounter+1)%(tim);
     if (timeCounter == 0)
@@ -84,10 +171,22 @@ public class Escenario extends World
             frasco();
         }
         timeElapsed = 0;
-        x = Greenfoot.getRandomNumber(5);
+        x = Greenfoot.getRandomNumber(5);   
+    }
+    if (nace == true){
+        timeCounter2 = (timeCounter2+1)%(96);
+    if (timeCounter2 == 0)
+    {
+        timeElapsed2++;
+        int b = Greenfoot.getRandomNumber(2);
+        timeElapsed = 0;
+        existea = false;
+        nace = false;
     }
     }
+    
 
+    }
     private void frasco(){
         int xfrasco;
         xfrasco = Greenfoot.getRandomNumber(900);
@@ -95,10 +194,11 @@ public class Escenario extends World
         addObject(frasco1,xfrasco,0);
     }
     
-    private void gancho(){
+    public void gancho(){
         int xgancho;
-        xgancho = Greenfoot.getRandomNumber(900);
         Gancho gancho1 = new Gancho();
-        addObject(gancho1,xgancho,500);
+        A_Ship bx = new A_Ship();
+        xgancho = bx.gX();
+        addObject(gancho1,450,500);
     }
 }
