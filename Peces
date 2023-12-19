@@ -13,76 +13,47 @@ public class Peces extends Actor
     public Peces(){
         switch (obj){
             case 0:
-                peza();
+                setImage("Peza.png");
                 break;
             case 1:
-                pezr();
+                setImage("Pezr.png");
                 break;
             case 2:
-                pezv();
+                setImage("Pezv.png");
                 break;
             case 3:
-                pezn();
+                setImage("Pezn.png");
                 break;
             case 4:
-                pezm();
+                setImage("Pezm.png");
                 break;
             case 5:
-                pezb();
+                setImage("Pezb.png");
                 break;
         }
-    }
-    /**
-     * Act - do whatever the Peces wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void peza(){
-        setImage("Peza.png");
         GreenfootImage myImage = getImage();
         int myNewHeight = (int)myImage.getHeight()*5/8;
         int myNewWidth = (int)myImage.getWidth()*5/8;
         myImage.scale(myNewWidth,myNewHeight);
     }
-    public void pezr(){
-        setImage("Pezr.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    public void pezv(){
-        setImage("Pezv.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    public void pezn(){
-        setImage("Pezn.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    public void pezm(){
-        setImage("Pezm.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    public void pezb(){
-        setImage("Pezb.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    int a = 2;
+    int x = Greenfoot.getRandomNumber(2);
+    int a;
     public void act()
     {
+        switch (x){
+        case 0:
+            a = 2;
+            break;
+        case 1:
+            a = -2;
+            break;
+    }
         setLocation(getX()+a, getY());
-        if (isAtEdge()){
+        if (getX()==886 || getX()==885){
+            a= a*-1;
+            getImage().mirrorHorizontally();
+        }
+        if (getX()==14 || getX()==15){
             a = a*-1;
            getImage().mirrorHorizontally();
         }
