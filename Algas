@@ -13,69 +13,28 @@ public class Algas extends Actor
     public Algas(){
         switch (obj){
             case 0:
-                Algaa();
+                setImage("Algaa.png");
                 break;
             case 1:
-                Algaa2();
+                setImage("Algaa2.png");
                 break;
             case 2:
-                Algam();
+                setImage("Algam.png");
                 break;
             case 3:
-                Algam2();
+                setImage("Algam2.png");
                 break;
             case 4:
-                Algav();
+                setImage("Algav2.png");
                 break;
             case 5:
-                Algav2();
+                setImage("Algav2.png");
                 break;
         }
-    }
-    /**
-     * Act - do whatever the Peces wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void Algaa(){
-        setImage("Algaa.png");
         GreenfootImage myImage = getImage();
         int myNewHeight = (int)myImage.getHeight()*5/8;
         int myNewWidth = (int)myImage.getWidth()*5/8;
         myImage.scale(myNewWidth,myNewHeight);
     }
-    public void Algaa2(){
-        setImage("Algaa2.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    public void Algam(){
-        setImage("Algam.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    public void Algam2(){
-        setImage("Algam2.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    public void Algav(){
-        setImage("Algav2.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    public void Algav2(){
-        setImage("Algav2.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
+    
 }
