@@ -13,36 +13,40 @@ public class Frasco extends Actor
     public Frasco(){
         switch (obj){
             case 0:
-                frasco();
+                setImage("Frasco.png");
                 break;
             case 1:
-                botella();
+                setImage("Botella.png");
                 break;
             case 2:
-                disco();
+                setImage("Disco.png");
                 break;
             case 3:
-                movil();
+                setImage("Movil.png");
                 break;
             case 4:
-                libro();
+                setImage("Libro.png");
                 break;
             case 5:
-                mando();
+                setImage("Mando.png");
                 break;
             case 6:
-                ordenador();
+                setImage("Ordenador.png");
                 break;
             case 7:
-                portatil();
+                setImage("Portatil.png");
                 break;
             case 8:
-                torren();
+                setImage("Torre negra.png");
                 break;
             case 9:
-                torreb();
+                setImage("Torre blanca.png");
                 break;
         }
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
     }
     public void act()
     {
@@ -52,83 +56,4 @@ public class Frasco extends Actor
         }
     }
     
-    public void frasco(){
-        setImage("Frasco.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    
-    public void botella(){
-        setImage("Botella.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    
-    public void disco(){
-        setImage("Disco.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    
-    public void movil(){
-        setImage("Movil.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    
-    public void libro(){
-        setImage("Libro.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    
-    public void mando(){
-        setImage("Mando.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    
-    public void ordenador(){
-        setImage("Ordenador.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    
-    public void portatil(){
-        setImage("Portatil.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    
-    public void torren(){
-        setImage("Torre negra.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
-    
-    public void torreb(){
-        setImage("Torre blanca.png");
-        GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*5/8;
-        int myNewWidth = (int)myImage.getWidth()*5/8;
-        myImage.scale(myNewWidth,myNewHeight);
-    }
 }
