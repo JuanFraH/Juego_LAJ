@@ -11,8 +11,7 @@ public class Escenario extends World
     Gancho gancho = new Gancho();
     private int timeElapsed;
     private int timeCounter;
-    private int timeElapsed2;
-    private int timeCounter2;
+    
     public Escenario()
     {    
         super(900, 600, 1); 
@@ -134,8 +133,7 @@ public class Escenario extends World
     int a = Greenfoot.getRandomNumber(4);
     int tim;
     int x = Greenfoot.getRandomNumber(5);
-    boolean existea = false;
-    boolean nace = false;
+    
     public void act(){
           switch (x){
         case 0:
@@ -155,13 +153,7 @@ public class Escenario extends World
         break;
     }
         
-    if (Greenfoot.isKeyDown("space") && existea == false){
-        gancho();
-        existea = true;
-        timeCounter2=0;
-        timeElapsed2=0;
-        nace = true;
-    }
+    
         timeCounter = (timeCounter+1)%(tim);
     if (timeCounter == 0)
     {
@@ -173,19 +165,7 @@ public class Escenario extends World
         timeElapsed = 0;
         x = Greenfoot.getRandomNumber(5);   
     }
-    if (nace == true){
-        timeCounter2 = (timeCounter2+1)%(96);
-    if (timeCounter2 == 0)
-    {
-        timeElapsed2++;
-        int b = Greenfoot.getRandomNumber(2);
-        timeElapsed = 0;
-        existea = false;
-        nace = false;
-    }
-    }
     
-
     }
     private void frasco(){
         int xfrasco;
@@ -199,6 +179,7 @@ public class Escenario extends World
         Gancho gancho1 = new Gancho();
         A_Ship bx = new A_Ship();
         xgancho = bx.gX();
-        addObject(gancho1,450,500);
+        addObject(gancho1,bx.getX(),500);
     }
-}
+
+    }
