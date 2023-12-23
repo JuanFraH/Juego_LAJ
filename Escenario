@@ -136,27 +136,27 @@ public class Escenario extends World
     
     public void act(){
           switch (x){
-        case 0:
-            tim = 68;
-        break;
-        case 1:
-            tim = 82;
-        break;
-        case 2:
-            tim = 96;
-        break;
-        case 3:
-            tim = 110;
-        break;
-        case 4:
-            tim = 125;
-        break;
-    }
+            case 0:
+                tim = 68;
+                break;
+            case 1:
+                tim = 82;
+                break;
+            case 2:
+                tim = 96;
+                break;
+            case 3:
+                tim = 110;
+                break;
+            case 4:
+                tim = 125;
+                break;
+        }
         
     
         timeCounter = (timeCounter+1)%(tim);
-    if (timeCounter == 0)
-    {
+        if (timeCounter == 0)
+        {
         timeElapsed++;
         int b = Greenfoot.getRandomNumber(2);
         for (int i = 0; i <= b; i++){
@@ -164,7 +164,7 @@ public class Escenario extends World
         }
         timeElapsed = 0;
         x = Greenfoot.getRandomNumber(5);   
-    }
+        }
     
     }
     private void frasco(){
@@ -172,14 +172,6 @@ public class Escenario extends World
         xfrasco = Greenfoot.getRandomNumber(900);
         Frasco frasco1 = new Frasco();
         addObject(frasco1,xfrasco,0);
-    }
-    
-    public void gancho(){
-        int xgancho;
-        Gancho gancho1 = new Gancho();
-        A_Ship bx = new A_Ship();
-        xgancho = bx.gX();
-        addObject(gancho1,bx.getX(),500);
     }
 
     }
