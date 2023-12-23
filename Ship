@@ -9,8 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class A_Ship extends Actor
 {
     int x;
-    boolean existea = false;
-    boolean nace = false;
+    public boolean existea = false;
+    public boolean nace = false;
     private int timeElapsed2;
     private int timeCounter2;
     public A_Ship(){
@@ -28,6 +28,8 @@ public class A_Ship extends Actor
             move (-6);
         }
         if (Greenfoot.isKeyDown("space") && existea == false){
+            timeCounter2 = 0;
+            timeElapsed2 = 0;
             gancho();
             existea = true;
             timeCounter2=0;
@@ -35,7 +37,7 @@ public class A_Ship extends Actor
             nace = true;
         }
         if (nace == true){  
-            timeCounter2 = (timeCounter2+1)%(96);
+            timeCounter2 = (timeCounter2+1)%(40);
             if (timeCounter2 == 0)
             {
             timeElapsed2++;
@@ -48,19 +50,8 @@ public class A_Ship extends Actor
     
     
 }
-public int gX(){
-        return x;
-    }
 public void gancho(){
         Gancho gancho1 = new Gancho();
         getWorld().addObject(gancho1,getX(),440);
-    }
-}
-
-
-    
-    }
-    protected int gX(){
-        return x;
     }
 }
