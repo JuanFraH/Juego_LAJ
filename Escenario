@@ -11,7 +11,6 @@ public class Escenario extends World
     Gancho gancho = new Gancho();
     private int timeElapsed;
     private int timeCounter;
-    
     public Escenario()
     {    
         super(900, 600, 1); 
@@ -128,12 +127,20 @@ public class Escenario extends World
         
         A_Ship ship1 = new A_Ship();
         addObject(ship1,450,500);
+        
+        addObject(tiempo, 50, 50);
+        
+        
     }
     
     int a = Greenfoot.getRandomNumber(4);
     int tim;
     int x = Greenfoot.getRandomNumber(5);
     
+    private final int FPS = 60;
+    private Tiempo tiempo = new Tiempo();
+    private int[] hora = {0, 0}; 
+    private int timer = 0;
     public void act(){
           switch (x){
             case 0:
@@ -165,7 +172,21 @@ public class Escenario extends World
         timeElapsed = 0;
         x = Greenfoot.getRandomNumber(5);   
         }
-    
+        
+
+        if (++timer==FPS)
+        {
+           timer = 0;
+           if (++hora[1]==60)
+           {
+               if (++hora[0]==24)
+               {
+                   hora[0]=0;
+               }
+               hora[1]=0;
+           }
+           tiempo.updateImage();
+        }
     }
     private void frasco(){
         int xfrasco;
@@ -173,5 +194,34 @@ public class Escenario extends World
         Frasco frasco1 = new Frasco();
         addObject(frasco1,xfrasco,0);
     }
+    public class Tiempo extends Actor {
+    private int segundos;
 
+    public Tiempo() {
+        segundos = 0; 
+        updateImage(); 
     }
+
+    public void act() {
+        segundos++;
+        updateImage();
+    }
+
+    public void updateImage() {
+        int horas = segundos / 3600;
+        int minutos = (segundos % 3600) / 60;
+        int segs = segundos % 60;
+
+        String h = (horas < 10) ? "0" + horas : "" + horas;
+        String m = (minutos < 10) ? "0" + minutos : "" + minutos;
+        String s = (segs < 10) ? "0" + segs : "" + segs;
+
+        GreenfootImage img = new GreenfootImage(65,40);
+        Color colorPersonalizado = new Color(1, 16, 120);
+        img.setColor(colorPersonalizado);
+        img.setFont(new Font("Calibri", 25));
+        img.drawString(h + ":" + m + ":" + s, 5, 20);
+        setImage(img);
+    }
+}
+}
