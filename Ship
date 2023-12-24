@@ -13,12 +13,30 @@ public class A_Ship extends Actor
     public boolean nace = false;
     private int timeElapsed2;
     private int timeCounter2;
+    int golpe = 0;
+    
     public A_Ship(){
         setImage("ship.png");
     }
     
     public void act()
     {
+        Actor Frasco;
+        Frasco = getOneObjectAtOffset(0,0,Frasco.class);
+        Escenario escenario = (Escenario) getWorld();
+        if (Frasco != null){
+            getWorld().removeObject(Frasco);
+            if (golpe == 0){
+                setImage("ship1.png");
+            }
+            if (golpe == 1){
+                setImage("ship2.png");
+            }
+            if (golpe == 2){
+                getWorld().removeObject(this);
+            }
+            golpe++;
+        }
         setRotation(180);
         
         if (Greenfoot.isKeyDown("A")){
@@ -49,8 +67,8 @@ public class A_Ship extends Actor
         }
     
     
-}
-public void gancho(){
+    }
+    public void gancho(){
         Gancho gancho1 = new Gancho();
         getWorld().addObject(gancho1,getX(),440);
     }
