@@ -34,6 +34,7 @@ public class A_Ship extends Actor
             }
             if (golpe == 2){
                 getWorld().removeObject(this);
+                Greenfoot.stop();
             }
             golpe++;
         }
@@ -73,3 +74,4 @@ public class A_Ship extends Actor
         getWorld().addObject(gancho1,getX(),440);
     }
 }
+
