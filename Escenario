@@ -8,9 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Escenario extends World
 {
-    Gancho gancho = new Gancho();
-    private int timeElapsed;
-    private int timeCounter;
+        Gancho gancho = new Gancho();
+        private int timeElapsed;
+        private int timeCounter;
+        public int vidas = 3;
+        private A_Ship ship1;
     public Escenario()
     {    
         super(900, 600, 1); 
@@ -19,62 +21,62 @@ public class Escenario extends World
     
     public void started() {
         int xpeza;
-        xpeza = Greenfoot.getRandomNumber(900);
+        xpeza = Greenfoot.getRandomNumber(860) + 20;
         Peces peza = new Peces();
         addObject(peza,xpeza,400);
         
         int xpezr;
-        xpezr = Greenfoot.getRandomNumber(900);
+        xpezr = Greenfoot.getRandomNumber(860) + 20;
         Peces pezr = new Peces();
         addObject(pezr,xpezr, 450);
         
         int xpezv;
-        xpezv = Greenfoot.getRandomNumber(900);
+        xpezv = Greenfoot.getRandomNumber(860) + 20;
         Peces pezv = new Peces();
         addObject(pezv,xpezv,500);
         
         int xpezn;
-        xpezn = Greenfoot.getRandomNumber(900);
+        xpezn = Greenfoot.getRandomNumber(860) + 20;
         Peces pezn = new Peces();
         addObject(pezn,xpezn,550);
         
         int xpezm;
-        xpezm = Greenfoot.getRandomNumber(900);
+        xpezm = Greenfoot.getRandomNumber(860) + 20;
         Peces pezm = new Peces();
         addObject(pezm,xpezm,479);
         
         int xpezb;
-        xpezb = Greenfoot.getRandomNumber(900);
+        xpezb = Greenfoot.getRandomNumber(860) + 20;
         Peces pezb = new Peces();
         addObject(pezb,xpezb,562);
         
         int ypeza;
-        ypeza = Greenfoot.getRandomNumber(900);
+        ypeza = Greenfoot.getRandomNumber(860) + 20;
         Peces pezay = new Peces();
         addObject(pezay,ypeza,424);
         
         int ypezr;
-        ypezr = Greenfoot.getRandomNumber(900);
+        ypezr = Greenfoot.getRandomNumber(860) + 20;
         Peces pezry = new Peces();
         addObject(pezry,ypezr, 458);
         
         int ypezv;
-        ypezv = Greenfoot.getRandomNumber(900);
+        ypezv = Greenfoot.getRandomNumber(860) + 20;
         Peces pezvy = new Peces();
         addObject(pezvy,ypezv,512);
         
         int ypezn;
-        ypezn = Greenfoot.getRandomNumber(900);
+        ypezn = Greenfoot.getRandomNumber(860) + 20;
         Peces pezny = new Peces();
         addObject(pezny,ypezn,582);
         
         int ypezm;
-        ypezm = Greenfoot.getRandomNumber(900);
+        ypezm = Greenfoot.getRandomNumber(860) + 20;
         Peces pezmy = new Peces();
         addObject(pezmy,ypezm,590);
         
         int ypezb;
-        ypezb = Greenfoot.getRandomNumber(900);
+        ypezb = Greenfoot.getRandomNumber(860) + 20;
         Peces pezby = new Peces();
         addObject(pezby,ypezb,523);
         
@@ -124,24 +126,29 @@ public class Escenario extends World
         Algas algaa = new Algas();
         addObject(algaa,xalgaa,580);
         
-        
-        A_Ship ship1 = new A_Ship();
+        ship1 = new A_Ship();
         addObject(ship1,450,500);
         
         addObject(tiempo, 50, 50);
         
-        
+        actCounter = new Counter("Puntos: ");
+        addObject(actCounter, 800, 30);
     }
-    
+    private Counter actCounter;      
     int a = Greenfoot.getRandomNumber(4);
     int tim;
-    int x = Greenfoot.getRandomNumber(5);
-    
+    int x = Greenfoot.getRandomNumber(4);
+    int xfrasco;
+    int xroca;
+    int xCorazón;
+    int xPerla;
     private final int FPS = 60;
     private Tiempo tiempo = new Tiempo();
     private int[] hora = {0, 0}; 
     private int timer = 0;
+    int segundos;
     public void act(){
+        
           switch (x){
             case 0:
                 tim = 68;
@@ -155,22 +162,25 @@ public class Escenario extends World
             case 3:
                 tim = 110;
                 break;
-            case 4:
-                tim = 125;
-                break;
         }
         
-    
+        int roc;
+        int cor;
         timeCounter = (timeCounter+1)%(tim);
         if (timeCounter == 0)
         {
-        timeElapsed++;
-        int b = Greenfoot.getRandomNumber(2);
-        for (int i = 0; i <= b; i++){
+            timeElapsed++;
             frasco();
-        }
-        timeElapsed = 0;
-        x = Greenfoot.getRandomNumber(5);   
+            roc = Greenfoot.getRandomNumber(3);
+            if (roc == 0){
+                roca();
+            }
+            cor = Greenfoot.getRandomNumber(10);
+            if (cor == 0){
+                Corazón();
+            }
+            timeElapsed = 0;
+            x = Greenfoot.getRandomNumber(4);   
         }
         
 
@@ -188,40 +198,73 @@ public class Escenario extends World
            tiempo.updateImage();
         }
     }
+    
+    public A_Ship getBarco(){
+        return ship1;
+    }
+    
     private void frasco(){
-        int xfrasco;
         xfrasco = Greenfoot.getRandomNumber(900);
         Frasco frasco1 = new Frasco();
         addObject(frasco1,xfrasco,0);
     }
+    private void roca(){
+        xroca = Greenfoot.getRandomNumber(900);
+        Rocas roca1 = new Rocas();
+        while (xfrasco <= xroca + 100 && xfrasco >= xroca -100){
+            xroca = Greenfoot.getRandomNumber(900);
+        }
+        addObject(roca1,xroca,0);
+    }
+    int r;
+    private void Corazón(){
+        xCorazón = Greenfoot.getRandomNumber(900);
+        Corazón Corazón1 = new Corazón();
+        Perla Perla1 = new Perla();
+        while (xfrasco <= xCorazón + 200 && xfrasco >= xCorazón -200 || xroca <= xCorazón + 200 && xroca >= xCorazón -200){
+            xCorazón = Greenfoot.getRandomNumber(900);
+        }
+        r = Greenfoot.getRandomNumber(10);
+        if (r == 0){
+            addObject(Perla1,xCorazón,0);
+        }
+        else{
+            addObject(Corazón1,xCorazón,0);
+        }
+        
+    }
+    public int ptos;
+    public void ptos(){
+        actCounter.setValue(actCounter.getValue() + 1);
+        ptos++;
+    }
+    
     public class Tiempo extends Actor {
-    private int segundos;
+        public Tiempo() {
+            segundos = 0; 
+            updateImage(); 
+        }
 
-    public Tiempo() {
-        segundos = 0; 
-        updateImage(); 
+        public void act() {
+            segundos++;
+            updateImage();
+        }
+
+        public void updateImage() {
+            int horas = segundos / 3600;
+            int minutos = (segundos % 3600) / 60;
+            int segs = segundos % 60;
+
+            String h = (horas < 10) ? "0" + horas : "" + horas;
+            String m = (minutos < 10) ? "0" + minutos : "" + minutos;
+            String s = (segs < 10) ? "0" + segs : "" + segs;
+
+            GreenfootImage img = new GreenfootImage(65,40);
+            Color colorPersonalizado = new Color(1, 16, 120);
+            img.setColor(colorPersonalizado);
+            img.setFont(new Font("Calibri", 25));
+            img.drawString(h + ":" + m + ":" + s, 5, 20);
+            setImage(img);
+        }
     }
-
-    public void act() {
-        segundos++;
-        updateImage();
-    }
-
-    public void updateImage() {
-        int horas = segundos / 3600;
-        int minutos = (segundos % 3600) / 60;
-        int segs = segundos % 60;
-
-        String h = (horas < 10) ? "0" + horas : "" + horas;
-        String m = (minutos < 10) ? "0" + minutos : "" + minutos;
-        String s = (segs < 10) ? "0" + segs : "" + segs;
-
-        GreenfootImage img = new GreenfootImage(65,40);
-        Color colorPersonalizado = new Color(1, 16, 120);
-        img.setColor(colorPersonalizado);
-        img.setFont(new Font("Calibri", 25));
-        img.drawString(h + ":" + m + ":" + s, 5, 20);
-        setImage(img);
-    }
-}
 }
