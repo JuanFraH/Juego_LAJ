@@ -1,11 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class Ship here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class A_Ship extends Actor
 {
     int x;
@@ -13,50 +7,65 @@ public class A_Ship extends Actor
     public boolean nace = false;
     private int timeElapsed2;
     private int timeCounter2;
-    int golpe = 0;
-    
+    public int golpe = 0;
+    Escenario escenario = (Escenario) getWorld();
     public A_Ship(){
         setImage("ship.png");
     }
     
     public void act()
     {
-        Actor Frasco;
-        Frasco = getOneObjectAtOffset(0,0,Frasco.class);
-        Escenario escenario = (Escenario) getWorld();
-        if (Frasco != null){
-            getWorld().removeObject(Frasco);
-            if (golpe == 0){
-                setImage("ship1.png");
-            }
-            if (golpe == 1){
-                setImage("ship2.png");
-            }
-            if (golpe == 2){
-                getWorld().removeObject(this);
-                Greenfoot.stop();
-            }
-            golpe++;
-        }
-        setRotation(180);
+        golpe();
         
-        if (Greenfoot.isKeyDown("A")){
-            move (6);
+        if (golpe <0){
+            golpe = 0;
         }
-        if (Greenfoot.isKeyDown("D")){
+        if(mejora < 3){
+           switch (golpe){
+            case 0:
+                setImage("ship.png");
+                break;
+            case 1:
+                setImage("ship1.png");
+                break;
+            case 2:
+                setImage("ship2.png");
+                break;
+            case 3:
+                getWorld().removeObject(this);
+                break;
+                
+            } 
+        }
+        else{
+            
+        }
+        
+        
+        setRotation(180);
+        if (getX() <= 870){
+                if (Greenfoot.isKeyDown("D")){
             move (-6);
+            }
         }
+        if (getX() >= 30){
+                if (Greenfoot.isKeyDown("A")){
+            move (6);
+            }
+        }
+        
+        
         if (Greenfoot.isKeyDown("space") && existea == false){
             timeCounter2 = 0;
             timeElapsed2 = 0;
-            gancho();
+            creagancho();
             existea = true;
             timeCounter2=0;
             timeElapsed2=0;
             nace = true;
         }
         if (nace == true){  
-            timeCounter2 = (timeCounter2+1)%(40);
+            timeCounter2 = (timeCounter2+1)%(30);
             if (timeCounter2 == 0)
             {
             timeElapsed2++;
@@ -64,14 +73,33 @@ public class A_Ship extends Actor
             timeElapsed2 = 0;
             existea = false;
             nace = false;
+            }
         }
-        }
-    
     
     }
-    public void gancho(){
+    public void creagancho(){
         Gancho gancho1 = new Gancho();
         getWorld().addObject(gancho1,getX(),440);
     }
+    public void golpe(){
+        Actor Frasco;
+        Actor Rocas;
+        Actor Corazón;
+        Frasco = getOneObjectAtOffset(0,0,Frasco.class);
+        Rocas = getOneObjectAtOffset(0,0,Rocas.class);
+        Corazón = getOneObjectAtOffset(0,0,Corazón.class);
+        
+        if (Frasco != null || Rocas != null){
+            getWorld().removeObject(Frasco);
+            getWorld().removeObject(Rocas);
+            golpe++;
+        }
+        if (Corazón != null){
+            getWorld().removeObject(Corazón);
+            golpe--;
+        }
+    }
+    public void uf(){
+        golpe++;
+    }
 }
-
