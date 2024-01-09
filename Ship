@@ -38,7 +38,17 @@ public class A_Ship extends Actor
             } 
         }
         else{
-            
+            switch (golpe){
+                case 0:
+                    setImage("pirata.png");
+                    break;
+                case 1:
+                    setImage("pirata1.png");
+                    break;
+                case 2:
+                    setImage("pirata2.png");
+                    break;
+            }
         }
         
         
@@ -85,9 +95,11 @@ public class A_Ship extends Actor
         Actor Frasco;
         Actor Rocas;
         Actor Corazón;
+        Actor Perla;
         Frasco = getOneObjectAtOffset(0,0,Frasco.class);
         Rocas = getOneObjectAtOffset(0,0,Rocas.class);
         Corazón = getOneObjectAtOffset(0,0,Corazón.class);
+        Perla = getOneObjectAtOffset(0,0,Perla.class);
         
         if (Frasco != null || Rocas != null){
             getWorld().removeObject(Frasco);
@@ -97,6 +109,10 @@ public class A_Ship extends Actor
         if (Corazón != null){
             getWorld().removeObject(Corazón);
             golpe--;
+        }
+        if (Perla != null){
+            getWorld().removeObject(Perla);
+            mejora++;
         }
     }
     public void uf(){
