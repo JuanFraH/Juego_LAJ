@@ -1,11 +1,5 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
-/**
- * Write a description of class Gancho here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Gancho extends Actor
 {
     
@@ -13,8 +7,8 @@ public class Gancho extends Actor
         setImage("Ancla.png");
         setRotation(180);
         GreenfootImage myImage = getImage();
-        int myNewHeight = (int)myImage.getHeight()*1/8;
-        int myNewWidth = (int)myImage.getWidth()*1/8;
+        int myNewHeight = (int)myImage.getHeight()*2/10;
+        int myNewWidth = (int)myImage.getWidth()*2/10;
         myImage.scale(myNewWidth,myNewHeight);
     }
     
@@ -22,19 +16,24 @@ public class Gancho extends Actor
     {
         setLocation(getX(), getY()-5);
         Actor Frasco;
+        Actor Rocas;
         Frasco = getOneObjectAtOffset(0,0,Frasco.class);
+        Rocas = getOneObjectAtOffset(0,0,Rocas.class);
         Escenario escenario = (Escenario) getWorld();
         A_Ship ship = new A_Ship();
-        if (getY() < 0){
+        if (getY() <= 0){
             escenario.removeObject(this);
         }
         
-        
+        if (Rocas != null){
+            escenario.removeObject(this);
+        }
         if (Frasco != null){
             ship.nace = false;
             ship.existea = false;
             escenario.removeObject(Frasco);
             escenario.removeObject(this);
+            escenario.ptos();
         }
     }
 }
