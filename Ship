@@ -3,6 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class A_Ship extends Actor
 {
     int x;
+    int mejora;
     public boolean existea = false;
     public boolean nace = false;
     private int timeElapsed2;
