@@ -1,0 +1,18 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+public class Corazón extends Actor
+{
+    public Corazón(){
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*3/8;
+        int myNewWidth = (int)myImage.getWidth()*3/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    public void act()
+    {
+        setLocation(getX(), getY() + 2);
+        if (isAtEdge()){
+            getWorld().removeObject(this);
+        }
+    }
+}
