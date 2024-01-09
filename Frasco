@@ -1,15 +1,9 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;  
 
-/**
- * Write a description of class Frasco here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Frasco extends Actor
 {
     int obj = Greenfoot.getRandomNumber(10);
-    
+    A_Ship ship = new A_Ship();
     public Frasco(){
         switch (obj){
             case 0:
@@ -51,7 +45,9 @@ public class Frasco extends Actor
     public void act()
     {
         setLocation(getX(), getY() + 2);
+        Escenario escenario = (Escenario) getWorld();
         if (isAtEdge()){
+            escenario.getBarco().uf();
             getWorld().removeObject(this);
         }
     }
