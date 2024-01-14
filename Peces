@@ -3,7 +3,8 @@ import greenfoot.*;
 public class Peces extends Actor
 {
     int obj = Greenfoot.getRandomNumber(6);
-    
+    int x = Greenfoot.getRandomNumber(2);
+    int vel;
     public Peces(){
         switch (obj){
             case 0:
@@ -29,45 +30,60 @@ public class Peces extends Actor
         int myNewHeight = (int)myImage.getHeight()*5/8;
         int myNewWidth = (int)myImage.getWidth()*5/8;
         myImage.scale(myNewWidth,myNewHeight);
+        
+        switch (x) {
+            case 0:
+                    vel = 2;
+                break;
+            case 1:
+                    getImage().mirrorHorizontally(); 
+                    vel = -2;
+            break;
+        }
     }
-    int x = Greenfoot.getRandomNumber(2);
-    int a;
-    int b = 0;
-    int c= 0;
-    boolean imagenReflejada = false;
+    
+    boolean nivel = false;
     public void act()
     {
-      switch (x) {
-        case 0:
-            
-            if (b==0) {
-                a = 2;
-            }
-            break;
-        case 1:
-            if (!imagenReflejada) {
-                getImage().mirrorHorizontally(); 
-                imagenReflejada = true; 
-            }
-            if (c==0) {
-                a = -2;
-            }
-            break;
-    }
-
-    setLocation(getX() + a, getY());
-    if (getX() == 886 || getX() == 885) {
-        a = -a;
-        b = 1;
-        c= 0;
+    setLocation(getX() + vel, getY());
+    if (getX() >= 885) {
+        vel = -vel;
         getImage().mirrorHorizontally();
     }
 
-    if (getX() == 14 || getX() == 15) {
-        a = -a;
-        b = 0;
-        c = 1;
+    if (getX() <= 15) {
+        vel = -vel;
         getImage().mirrorHorizontally();
     }
-}
+    Escenario escenario = (Escenario) getWorld();
+    if (escenario.nivel2 == true && nivel == false){
+        obj = Greenfoot.getRandomNumber(5);
+        switch (obj){
+            case 0:
+                setImage("PezMuerto1.png");
+                break;
+            case 1:
+                setImage("PezMuerto2.png");
+                break;
+            case 2:
+                setImage("PezMuerto3.png");
+                break;
+            case 3:
+                setImage("PezMuerto4.png");
+                break;
+            case 4:
+                setImage("PezMuerto5.png");
+                break;
+        }
+        
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
+        nivel = true;
+        if (vel == -2){
+            getImage().mirrorHorizontally();
+        }
+        }
+    }
     }
