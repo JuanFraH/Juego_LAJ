@@ -8,7 +8,6 @@ public class Corazón extends Actor
         int myNewWidth = (int)myImage.getWidth()*3/8;
         myImage.scale(myNewWidth,myNewHeight);
     }
-    boolean nivel = false;
     public void act()
     {
         setLocation(getX(), getY() + 2);
