@@ -1,25 +1,148 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
-/**
- * Write a description of class Escenario here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Escenario extends World
 {
-        Gancho gancho = new Gancho();
         private int timeElapsed;
         private int timeCounter;
-        public int vidas = 3;
         private A_Ship ship1;
     public Escenario()
     {    
         super(900, 600, 1); 
         setBackground("tile.png");
+       if (started == false){
+            Inicio();
+            started = true;
+        }
     }
     
-    public void started() {
+    
+    
+    private Counter actCounter;
+    int timerspawn;
+    int x = Greenfoot.getRandomNumber(4);
+    int xfrasco;
+    int xroca;
+    int xCorazón;
+    int xPerla;
+    private final int FPS = 60;
+    private Tiempo tiempo = new Tiempo();
+    private int[] hora = {0, 0}; 
+    private int timer = 0;
+    int segundos;
+    boolean started = false;
+    public boolean nivel2 = false;
+    public void act(){
+        if (started == false){
+            Inicio();
+            started = true;
+        }
+        if (ptos >= 30 && nivel2 == false){
+            setBackground("tileoscuro2.png");
+            nivel2 = true;
+        }
+          switch (x){
+            case 0:
+                timerspawn = 68;
+                break;
+            case 1:
+                timerspawn = 82;
+                break;
+            case 2:
+                timerspawn = 96;
+                break;
+            case 3:
+                timerspawn = 120;
+                break;
+        }
+        int roca;
+        int corazon;
+        timeCounter = (timeCounter+1)%(timerspawn);
+        if (timeCounter == 0)
+        {
+            timeElapsed++;
+            frasco();
+            roca = Greenfoot.getRandomNumber(4);
+            if (roca < 4){
+                roca();
+            }
+            corazon = Greenfoot.getRandomNumber(4);
+            if (corazon == 0){
+                Corazón();
+            }
+            if (ptos >= 30){
+                Bomba();
+            }
+            timeElapsed = 0;
+            x = Greenfoot.getRandomNumber(4);   
+        }
+        
+
+        if (++timer==FPS)
+        {
+           timer = 0;
+           if (++hora[1]==60)
+           {
+               if (++hora[0]==24)
+               {
+                   hora[0]=0;
+               }
+               hora[1]=0;
+           }
+           tiempo.updateImage();
+        }
+    }
+    
+    public A_Ship getBarco(){
+        return ship1;
+    }
+    
+    private void frasco(){
+        xfrasco = Greenfoot.getRandomNumber(840) + 30;
+        Frasco frasco1 = new Frasco();
+        addObject(frasco1,xfrasco,0);
+    }
+    private void roca(){
+        xroca = Greenfoot.getRandomNumber(900);
+        Rocas roca1 = new Rocas();
+        while (xfrasco <= xroca + 100 && xfrasco >= xroca -100){
+            xroca = Greenfoot.getRandomNumber(900);
+        }
+        addObject(roca1,xroca,0);
+    }
+    
+    int probbonus;
+    private void Corazón(){
+        xCorazón = Greenfoot.getRandomNumber(900);
+        Corazón Corazón1 = new Corazón();
+        Perla Perla1 = new Perla();
+        while (xfrasco <= xCorazón + 100 && xfrasco >= xCorazón -100 || xroca <= xCorazón + 100 && xroca >= xCorazón -100){
+            xCorazón = Greenfoot.getRandomNumber(900);
+        }
+        probbonus = Greenfoot.getRandomNumber(3);
+        if (probbonus == 0){
+            addObject(Perla1,xCorazón,0);
+        }
+        else{
+            addObject(Corazón1,xCorazón,0);
+        }
+    }
+    int xbomba;
+    public void Bomba(){
+        xbomba = Greenfoot.getRandomNumber(840) + 30;
+        Bomba bomba1 = new Bomba();
+        while (xfrasco <= xbomba + 100 && xfrasco >= xbomba -100 || xroca <= xbomba + 100 && xroca >= xbomba -100 || xCorazón <= xbomba + 100 && xCorazón >= xbomba -100){
+            xbomba = Greenfoot.getRandomNumber(900);
+        }
+        addObject(bomba1,xbomba,0);
+    }
+    
+    public int ptos;
+    public void ptos(){
+        actCounter.setValue(actCounter.getValue() + 1);
+        ptos++;
+    }
+    
+    private void Inicio(){
         int xpeza;
         xpeza = Greenfoot.getRandomNumber(860) + 20;
         Peces peza = new Peces();
@@ -133,110 +256,6 @@ public class Escenario extends World
         
         actCounter = new Counter("Puntos: ");
         addObject(actCounter, 800, 30);
-    }
-    private Counter actCounter;      
-    int a = Greenfoot.getRandomNumber(4);
-    int tim;
-    int x = Greenfoot.getRandomNumber(4);
-    int xfrasco;
-    int xroca;
-    int xCorazón;
-    int xPerla;
-    private final int FPS = 60;
-    private Tiempo tiempo = new Tiempo();
-    private int[] hora = {0, 0}; 
-    private int timer = 0;
-    int segundos;
-    public void act(){
-        
-          switch (x){
-            case 0:
-                tim = 68;
-                break;
-            case 1:
-                tim = 82;
-                break;
-            case 2:
-                tim = 96;
-                break;
-            case 3:
-                tim = 110;
-                break;
-        }
-        
-        int roc;
-        int cor;
-        timeCounter = (timeCounter+1)%(tim);
-        if (timeCounter == 0)
-        {
-            timeElapsed++;
-            frasco();
-            roc = Greenfoot.getRandomNumber(3);
-            if (roc == 0){
-                roca();
-            }
-            cor = Greenfoot.getRandomNumber(10);
-            if (cor == 0){
-                Corazón();
-            }
-            timeElapsed = 0;
-            x = Greenfoot.getRandomNumber(4);   
-        }
-        
-
-        if (++timer==FPS)
-        {
-           timer = 0;
-           if (++hora[1]==60)
-           {
-               if (++hora[0]==24)
-               {
-                   hora[0]=0;
-               }
-               hora[1]=0;
-           }
-           tiempo.updateImage();
-        }
-    }
-    
-    public A_Ship getBarco(){
-        return ship1;
-    }
-    
-    private void frasco(){
-        xfrasco = Greenfoot.getRandomNumber(900);
-        Frasco frasco1 = new Frasco();
-        addObject(frasco1,xfrasco,0);
-    }
-    private void roca(){
-        xroca = Greenfoot.getRandomNumber(900);
-        Rocas roca1 = new Rocas();
-        while (xfrasco <= xroca + 100 && xfrasco >= xroca -100){
-            xroca = Greenfoot.getRandomNumber(900);
-        }
-        addObject(roca1,xroca,0);
-    }
-    int r;
-    private void Corazón(){
-        xCorazón = Greenfoot.getRandomNumber(900);
-        Corazón Corazón1 = new Corazón();
-        Perla Perla1 = new Perla();
-        while (xfrasco <= xCorazón + 200 && xfrasco >= xCorazón -200 || xroca <= xCorazón + 200 && xroca >= xCorazón -200){
-            xCorazón = Greenfoot.getRandomNumber(900);
-        }
-        r = Greenfoot.getRandomNumber(10);
-        if (r == 0){
-            addObject(Perla1,xCorazón,0);
-        }
-        else{
-            addObject(Corazón1,xCorazón,0);
-        }
-        
-    }
-    public int ptos;
-    public void ptos(){
-        actCounter.setValue(actCounter.getValue() + 1);
-        ptos++;
     }
     
     public class Tiempo extends Actor {
