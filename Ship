@@ -1,25 +1,24 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
 public class A_Ship extends Actor
 {
     int x;
     int mejora;
     public boolean existea = false;
-    public boolean nace = false;
     private int timeElapsed2;
     private int timeCounter2;
     public int golpe = 0;
     Escenario escenario = (Escenario) getWorld();
+    boolean sound_mejora = false;
     public A_Ship(){
         setImage("ship.png");
     }
-    
     public void act()
-    {
-        golpe();
+    { 
+        golpe(); 
         
-        if (golpe <0){
-            golpe = 0;
+        if (golpe <0){          
+            golpe = 0; 
         }
         if(mejora < 3){
            switch (golpe){
@@ -32,13 +31,17 @@ public class A_Ship extends Actor
             case 2:
                 setImage("ship2.png");
                 break;
-            case 3:
-                getWorld().removeObject(this);
-                break;
-                
-            } 
+            default:
+            }
+           if (golpe >= 3){
+               Greenfoot.setWorld(new Game_Over());
+           }
         }
         else{
+            if (sound_mejora == false){
+                Greenfoot.playSound("efecto_sonido1.mp3");
+                sound_mejora = true;
+            }
             switch (golpe){
                 case 0:
                     setImage("pirata.png");
@@ -50,32 +53,37 @@ public class A_Ship extends Actor
                     setImage("pirata2.png");
                     break;
             }
+            if (golpe >= 3){
+               Greenfoot.setWorld(new Game_Over());
+            }
         }
+        
         
         
         setRotation(180);
         if (getX() <= 870){
                 if (Greenfoot.isKeyDown("D")){
-            move (-6);
+            move (-7);
             }
         }
         if (getX() >= 30){
                 if (Greenfoot.isKeyDown("A")){
-            move (6);
+            move (7);
             }
         }
-        
         
         if (Greenfoot.isKeyDown("space") && existea == false){
             timeCounter2 = 0;
             timeElapsed2 = 0;
             creagancho();
+            if (mejora >= 3){
+                creabala();
+                creabala2();
+            }
             existea = true;
-            timeCounter2=0;
-            timeElapsed2=0;
-            nace = true;
         }
-        if (nace == true){  
+        
+        if (existea == true){  
             timeCounter2 = (timeCounter2+1)%(30);
             if (timeCounter2 == 0)
             {
@@ -83,7 +91,6 @@ public class A_Ship extends Actor
             int b = Greenfoot.getRandomNumber(2);
             timeElapsed2 = 0;
             existea = false;
-            nace = false;
             }
         }
     
@@ -92,20 +99,32 @@ public class A_Ship extends Actor
         Gancho gancho1 = new Gancho();
         getWorld().addObject(gancho1,getX(),440);
     }
+    public void creabala(){
+        BalaCañon bala1 = new BalaCañon();
+        getWorld().addObject(bala1,getX()-20,490);
+        bala1.der = false;
+    }
+    public void creabala2(){
+        BalaCañon bala1 = new BalaCañon();
+        getWorld().addObject(bala1,getX()+20,490);
+        bala1.der = true;
+    }
     public void golpe(){
         Actor Frasco;
         Actor Rocas;
         Actor Corazón;
         Actor Perla;
+        Actor Bomba;
         Frasco = getOneObjectAtOffset(0,0,Frasco.class);
         Rocas = getOneObjectAtOffset(0,0,Rocas.class);
         Corazón = getOneObjectAtOffset(0,0,Corazón.class);
         Perla = getOneObjectAtOffset(0,0,Perla.class);
-        
+        Bomba = getOneObjectAtOffset(0,0,Bomba.class);
         if (Frasco != null || Rocas != null){
             getWorld().removeObject(Frasco);
             getWorld().removeObject(Rocas);
             golpe++;
+            Greenfoot.playSound("efecto_sonido2.mp3");
         }
         if (Corazón != null){
             getWorld().removeObject(Corazón);
@@ -114,6 +133,12 @@ public class A_Ship extends Actor
         if (Perla != null){
             getWorld().removeObject(Perla);
             mejora++;
+        }
+        if (Bomba != null){
+            golpe = golpe + 3;
+            Explosion explosion1 = new Explosion();
+            getWorld().addObject(explosion1,getX(),getY());
+            getWorld().removeObject(Bomba);
         }
     }
     public void uf(){
