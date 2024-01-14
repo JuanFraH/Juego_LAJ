@@ -4,23 +4,23 @@ public class Gancho extends Actor
 {
     
     public Gancho(){
-        setImage("Ancla.png");
+        setImage("Gancho.png");
         setRotation(180);
         GreenfootImage myImage = getImage();
         int myNewHeight = (int)myImage.getHeight()*2/10;
         int myNewWidth = (int)myImage.getWidth()*2/10;
         myImage.scale(myNewWidth,myNewHeight);
     }
-    
     public void act()
     {
         setLocation(getX(), getY()-5);
         Actor Frasco;
         Actor Rocas;
+        Actor Bomba;
         Frasco = getOneObjectAtOffset(0,0,Frasco.class);
         Rocas = getOneObjectAtOffset(0,0,Rocas.class);
+        Bomba = getOneObjectAtOffset(0,0,Bomba.class);
         Escenario escenario = (Escenario) getWorld();
-        A_Ship ship = new A_Ship();
         if (getY() <= 0){
             escenario.removeObject(this);
         }
@@ -29,11 +29,12 @@ public class Gancho extends Actor
             escenario.removeObject(this);
         }
         if (Frasco != null){
-            ship.nace = false;
-            ship.existea = false;
             escenario.removeObject(Frasco);
             escenario.removeObject(this);
             escenario.ptos();
+        }
+        if (Bomba != null){
+            getWorld().removeObject(this);
         }
     }
 }
