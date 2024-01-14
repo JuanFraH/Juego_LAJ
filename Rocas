@@ -1,0 +1,49 @@
+import greenfoot.*;  
+
+public class Rocas extends Actor
+{
+    int obj = Greenfoot.getRandomNumber(8);
+    
+    public Rocas(){
+        switch (obj){
+            case 0:
+                setImage("Meteorito1M.png");
+                break;
+            case 1:
+                setImage("Meteorito2M.png");
+                break;
+            case 2:
+                setImage("Meteorito3M.png");
+                break;
+            case 3:
+                setImage("Meteorito4M.png");
+                break;
+            case 4:
+                setImage("Meteorito1G.png");
+                break;
+            case 5:
+                setImage("Meteorito2G.png");
+                break;
+            case 6:
+                setImage("Meteorito3G.png");
+                break;
+            case 7:
+                setImage("Meteorito4G.png");
+                break;
+        }
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*5/8;
+        int myNewWidth = (int)myImage.getWidth()*5/8;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    public void act()
+    {
+        setLocation(getX(), getY() + 2);
+        Escenario escenario = (Escenario) getWorld();
+        if (isAtEdge()){
+            getWorld().removeObject(this);
+        }
+        
+    }
+    
+}
