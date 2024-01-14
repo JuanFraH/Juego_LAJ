@@ -1,34 +1,23 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
-/**
- * Write a description of class Menú_inicio here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+import greenfoot.*;  
 public class Menu_Inicio extends World
 {
-    private int opcion=0; //0 = jugar 1 = Salir
     public Menu_Inicio()
     {    
         super(900, 600, 1); 
         setBackground("Menu_Inicio.png");
-        prepararMundo();
+        Greenfoot.playSound("Make_It_Happen.mp3");
     }
     
-    private void prepararMundo(){
-        addObject(new Enter(),450,310);
+    public void started(){
+        Label label1 = new Label ("Pulsa enter para jugar", 70);
+        Label label2 = new Label ("JUNK LAKE AGE", 100);
+        addObject(label2, getWidth()/2, 100);
+        addObject(label1, getWidth()/2, 500);
     }
     
     public void act(){
-
         if (Greenfoot.isKeyDown("ENTER")){
          Greenfoot.setWorld(new Escenario());
             }
         }
     }
-            }
-        }
-        
-    }
-}
