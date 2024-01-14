@@ -3,7 +3,6 @@ import greenfoot.*;
 public class Frasco extends Actor
 {
     int obj = Greenfoot.getRandomNumber(10);
-    A_Ship ship = new A_Ship();
     public Frasco(){
         switch (obj){
             case 0:
