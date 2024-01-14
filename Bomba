@@ -1,0 +1,21 @@
+import greenfoot.*;
+
+public class Bomba extends Actor
+{
+    public Bomba(){
+        setImage("Bomba.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*3/10;
+        int myNewWidth = (int)myImage.getWidth()*3/10;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    
+    
+    public void act()
+    {
+        setLocation(getX(), getY() + 2);
+        if (isAtEdge()){
+            getWorld().removeObject(this);
+        }
+    }
+}
