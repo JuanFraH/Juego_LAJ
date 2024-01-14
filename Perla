@@ -1,4 +1,4 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
 public class Perla extends Actor
 {
@@ -14,5 +14,6 @@ public class Perla extends Actor
         if (isAtEdge()){
             getWorld().removeObject(this);
         }
+        
     }
 }
