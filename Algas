@@ -1,15 +1,8 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
-/**
- * Write a description of class Algas here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+import greenfoot.*;  
 public class Algas extends Actor
 {
     int obj = Greenfoot.getRandomNumber(13);
-    
+    boolean nivel = false;
     public Algas(){
         switch (obj){
             case 0:
@@ -35,6 +28,15 @@ public class Algas extends Actor
         int myNewHeight = (int)myImage.getHeight()*5/8;
         int myNewWidth = (int)myImage.getWidth()*5/8;
         myImage.scale(myNewWidth,myNewHeight);
+        
+        
+    }
+    
+    public void act(){
+        Escenario escenario = (Escenario) getWorld();
+        if (escenario.nivel2 == true){
+            getWorld().removeObject(this);
+        }
     }
     
 }
