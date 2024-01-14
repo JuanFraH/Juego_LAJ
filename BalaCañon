@@ -1,0 +1,46 @@
+import greenfoot.*;
+public class BalaCañon extends Actor
+{
+    public boolean der;
+    public BalaCañon(){
+        setImage("BalaCañon.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*3/2;
+        int myNewWidth = (int)myImage.getWidth()*3/2;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    
+    public void act()
+    {
+        if (der == true){
+            setLocation(getX()+5, getY()-5);
+        }
+        else{
+            setLocation(getX()-5, getY()-5);
+        }
+        
+        
+        Actor Rocas;
+        Actor Bomba;
+        Rocas = getOneObjectAtOffset(0,0,Rocas.class);
+        Bomba = getOneObjectAtOffset(0,0,Bomba.class);
+        Escenario escenario = (Escenario) getWorld();
+        
+        if (isAtEdge()){
+            escenario.removeObject(this);
+        }
+        
+        if (Rocas != null){
+            Explosion explosion1 = new Explosion();
+            getWorld().addObject(explosion1,getX(),getY());
+            escenario.removeObject(Rocas);
+            escenario.removeObject(this);
+        }
+        if (Bomba != null){
+            Explosion explosion1 = new Explosion();
+            getWorld().addObject(explosion1,getX(),getY());
+            getWorld().removeObject(Bomba);
+            getWorld().removeObject(this);
+        }
+    }
+}
