@@ -1,0 +1,28 @@
+import greenfoot.*;  
+
+public class Explosion extends Actor
+{
+    public Explosion(){
+        setImage("explosion.png");
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*2;
+        int myNewWidth = (int)myImage.getWidth()*2;
+        myImage.scale(myNewWidth,myNewHeight);
+    }
+    int radio = 1;
+    public void act()
+    {
+        Escenario escenario = (Escenario) getWorld();
+        GreenfootImage myImage = getImage();
+        int myNewHeight = (int)myImage.getHeight()*2/radio;
+        int myNewWidth = (int)myImage.getWidth()*2/radio;
+        myImage.scale(myNewWidth,myNewHeight);
+        radio++;
+        
+        if (radio >= 4){
+            getWorld().removeObject(this);
+        }
+        
+        
+    }
+}
